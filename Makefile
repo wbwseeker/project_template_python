@@ -4,9 +4,8 @@ ENV = env
 SRCDIR = src
 TESTDIR = tests
 
-PYTHON = ${ENV}/bin/python
+PYTHON = python3.9
 PIP = ${ENV}/bin/pip
-VIRTUALENV = virtualenv
 POETRY = ${ENV}/bin/poetry
 COVERAGE = ${ENV}/bin/coverage
 PYTEST = ${COVERAGE} run --source ${SRCDIR} -m pytest -vvrw
@@ -30,7 +29,7 @@ install: virtualenv
 
 virtualenv:
 	if [ ! -d "${ENV}" ]; then \
-	    ${VIRTUALENV} ${ENV} ; \
+	    ${PYTHON} -m venv ${ENV} ; \
 	    ${PIP} install --upgrade pip ; \
         ${PIP} install poetry ; \
         ${POETRY} config --local virtualenvs.create false ; \
